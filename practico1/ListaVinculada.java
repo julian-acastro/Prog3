@@ -4,6 +4,8 @@ package practico1;
 //insertFront, extractFront, isEmpty, size). Agregar también el método: T get(index)
 import java.util.Iterator;
 
+
+
 public class ListaVinculada<T> implements Iterable<T>{
 	private Node<T> first;
 	private Node<T> last;
@@ -16,15 +18,17 @@ public class ListaVinculada<T> implements Iterable<T>{
 	}
 	
 	public void insertFront(T info) {
-		Node<T> tmp = new Node<T>(info,null,null);
-		tmp.setNext(this.first);
+		Node<T> tmp = new Node<T>(info,null,this.first);
 		if(this.first==null) {
 			this.last=tmp;
 			this.first = tmp;
 		}else {
 			this.first = tmp;
-			Node<T> posible = this.first.getNext();
-			posible.setBack(this.first);
+		}
+		
+		Node<T> siguiente = this.first.getNext();
+		if(siguiente!=null) {
+			siguiente.setBack(this.first);
 		}
 		this._size++;		
 	}
